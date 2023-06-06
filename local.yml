@@ -1,7 +1,8 @@
-- name: install packages
-  apt: name={{item}}
-  with_items:
-    - htop
-    - tmux
-    - vim
-    - git
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: update repositories
+      apt: update_cache=yes
+      changed_when: false
+  tasks:
+    - include: tasks/packages.yml

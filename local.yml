@@ -1,5 +1,10 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: install htop
-      apt: name=htop
+    - name: install packages
+      apt: name={{item}}
+      with_items:
+        - htop
+        - tmux
+        - vim
+        - git
